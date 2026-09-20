@@ -4,7 +4,7 @@ import hashlib
 from pathlib import Path
 import zipfile
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 files = [ROOT/p for p in ['README.md','START HERE.html','LICENSE','Setup Windows.cmd','Connect Windows.cmd']]
 for pattern in ['docs/*.md','assets/*.svg','tools/*.ps1','SD Card/**/*.sh']:
     files.extend(sorted(ROOT.glob(pattern)))

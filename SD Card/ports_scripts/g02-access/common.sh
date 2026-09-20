@@ -21,14 +21,14 @@ install_key() (
   set -eu
   auth_dir=$1
   pub=$2
-  validate_key "$pub"
-  check_dir "$auth_dir"
+  validate_key "$pub" || exit 1
+  check_dir "$auth_dir" || exit 1
   key=$(awk 'NF {print $1 " " $2}' "$pub")
   blob=$(printf '%s\n' "$key" | awk '{print $2}')
   auth="$auth_dir/authorized_keys"
   state="$auth_dir/g02-access-managed.pub"
   if [ -f "$state" ]; then
-    validate_key "$state"
+    validate_key "$state" || exit 1
     old=$(awk 'NF {print $1 " " $2}' "$state")
     [ "$old" = "$key" ] || { fail 'A different key is already managed. Run Remove SSH Access using the original installation first.'; exit 1; }
   fi
@@ -41,42 +41,42 @@ install_key() (
     exit 0
   fi
   umask 077
-  tmp=$(mktemp "$auth_dir/.g02-auth.XXXXXX")
+  tmp=$(mktemp "$auth_dir/.g02-auth.XXXXXX") || exit 1
   trap 'rm -f "$tmp"' EXIT HUP INT TERM
   if [ -f "$auth" ]; then
-    cp -p "$auth" "$tmp"
-    backup=$(mktemp "$auth_dir/authorized_keys.before-g02.XXXXXX")
-    cp -p "$auth" "$backup"
-    chmod 600 "$backup"
+    cp -p "$auth" "$tmp" || exit 1
+    backup=$(mktemp "$auth_dir/authorized_keys.before-g02.XXXXXX") || exit 1
+    cp -p "$auth" "$backup" || exit 1
+    chmod 600 "$backup" || exit 1
   fi
-  printf '\n%s g02-access-managed\n' "$key" >> "$tmp"
-  chmod 600 "$tmp"
+  printf '\n%s g02-access-managed\n' "$key" >> "$tmp" || exit 1
+  chmod 600 "$tmp" || exit 1
   # Record ownership before installing, allowing removal after interrupted setup.
-  printf '%s\n' "$key" > "$state"
-  chmod 600 "$state"
-  chmod 700 "$auth_dir"
-  mv "$tmp" "$auth"
+  printf '%s\n' "$key" > "$state" || exit 1
+  chmod 600 "$state" || exit 1
+  chmod 700 "$auth_dir" || exit 1
+  mv "$tmp" "$auth" || exit 1
   sync
   echo 'SUCCESS: Your public key is installed. Password and other keys are unchanged.'
 )
 remove_key() (
   set -eu
   auth_dir=$1
-  check_dir "$auth_dir"
+  check_dir "$auth_dir" || exit 1
   auth="$auth_dir/authorized_keys"
   state="$auth_dir/g02-access-managed.pub"
   if [ ! -f "$state" ]; then echo 'Nothing to remove: no key managed by this tool.'; exit 0; fi
-  validate_key "$state"
+  validate_key "$state" || exit 1
   blob=$(awk 'NF {print $2}' "$state")
   if [ -f "$auth" ]; then
     umask 077
-    tmp=$(mktemp "$auth_dir/.g02-auth.XXXXXX")
+    tmp=$(mktemp "$auth_dir/.g02-auth.XXXXXX") || exit 1
     trap 'rm -f "$tmp"' EXIT HUP INT TERM
-    awk -v k="$blob" '!($1=="ssh-ed25519" && $2==k && $3=="g02-access-managed")' "$auth" > "$tmp"
-    chmod 600 "$tmp"
-    mv "$tmp" "$auth"
+    awk -v k="$blob" '!($1=="ssh-ed25519" && $2==k && $3=="g02-access-managed")' "$auth" > "$tmp" || exit 1
+    chmod 600 "$tmp" || exit 1
+    mv "$tmp" "$auth" || exit 1
   fi
-  rm "$state"
+  rm "$state" || exit 1
   sync
   echo 'SUCCESS: The key installed by this tool was removed. Other keys and passwords are unchanged.'
   echo 'Existing SSH sessions stay open; new connections using this key should fail.'

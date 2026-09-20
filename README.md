@@ -36,7 +36,7 @@ You need your handheld, its game microSD card, a card reader, and a Windows PC o
 
 ### 1. Download and unzip
 
-Open **[Latest release](https://github.com/jwilson529/sunyao-g02-ssh-access/releases/latest)**. Under **Assets**, download **`sunyao-g02-ssh-access-v1.0.0.zip`**.
+Open **[Latest release](https://github.com/jwilson529/sunyao-g02-ssh-access/releases/latest)**. Under **Assets**, download **`sunyao-g02-ssh-access-v1.0.1.zip`**.
 
 Right-click the ZIP → **Extract All** → open the extracted folder. Do not run the tools from inside the ZIP. You should see **Setup Windows.cmd**, **Connect Windows.cmd**, and **SD Card**. For a large-print, offline walkthrough, double-click **START HERE.html**.
 

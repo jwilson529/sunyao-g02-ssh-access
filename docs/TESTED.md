@@ -21,9 +21,9 @@ The successful prototype added a public key via an SD-card Ports script. This pu
 
 ## Release checks
 
-For v1.0.0:
+For v1.0.1:
 
-- Eight automated tests passed: install/repeat/remove, bad/private key rejection, pre-existing key preservation, conflicting managed key rejection, symlink rejection, initially missing authorized_keys, Windows CRLF public keys, and shell syntax.
+- Eight automated tests passed, including execution under a caller that explicitly checks failures: install/repeat/remove, bad/private key rejection, pre-existing key preservation, conflicting managed key rejection, symlink rejection, initially missing authorized_keys, Windows CRLF public keys, and shell syntax.
 - Both Windows helpers passed parsing in Windows PowerShell on the development workstation.
 - Release ZIP integrity and the explicit file allowlist were checked; the ZIP contains no public/private keys or personal reports.
 - The packaged scripts were not re-run on the real handheld before release: it became unreachable during that final check. The hardware result above establishes the prototype method, not a completed end-to-end test of every packaged feature.

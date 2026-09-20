@@ -25,7 +25,7 @@ class AccessTests(unittest.TestCase):
         (self.auth/'authorized_keys').write_text(self.original)
 
     def call(self, action, key=None, success=True):
-        args = ['sh','-c','. "$1"; "$2" "$3" "$4"','test',str(LIB),action,str(self.auth),str(key or self.keys[0])]
+        args = ['sh','-c','. "$1"; "$2" "$3" "$4" || exit $?','test',str(LIB),action,str(self.auth),str(key or self.keys[0])]
         result = subprocess.run(args,text=True,capture_output=True)
         self.assertEqual(result.returncode == 0, success, result.stdout+result.stderr)
         return result.stdout
