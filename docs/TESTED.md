@@ -33,6 +33,19 @@ Automated shell tests use temporary directories and temporary keys; they do not 
 
 Windows wizard interaction and every SD-card reader combination cannot be inferred from a shell test. No claim is made that other G02 revisions or related brands work.
 
+## Follow-up hardware validation — September 20, 2026 UTC
+
+After the handheld became reachable again, the v1.0.1 packaged shell code was exercised on the same G02 over SSH:
+
+- The common library installed a key, recognized a repeat install, and removed its managed key in a disposable directory under `/tmp`. An unrelated comment was preserved.
+- The actual enable wrapper passed its firmware/SSH checks and recognized the workstation key already present in `/storage/.ssh/authorized_keys`. It correctly left existing access unchanged rather than claiming ownership.
+- The packaged diagnostic ran and reported `uid=0(root)`.
+- Temporary package/test files were removed. The existing authorized key and firmware were preserved.
+
+This verifies execution on the handheld's actual shell and utilities. It does **not** establish a new-key login/revocation test against the real SSH authorization file, a fresh launch of these packaged wrappers through the Ports UI, or an end-to-end Windows wizard walkthrough. The earlier prototype did establish real key-based login through the Ports method.
+
+The ZIP's testing record describes the evidence at release time; this follow-up adds subsequent hardware evidence without changing the published archive or checksum.
+
 ## Reporting another device
 
 Please include the exact device name, firmware version, whether Ports appears, whether the diagnostic reports root, and whether a **fresh** SSH connection succeeds. A script returning to the menu alone does not establish success.
