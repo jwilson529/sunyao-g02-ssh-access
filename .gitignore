@@ -1,0 +1,10 @@
+*.pub
+!tests/fixtures/*.pub
+*.pem
+*.key
+id_ed25519*
+G02-*-RESULT.txt
+G02-DIAGNOSTIC.txt
+__pycache__/
+dist/
+*.zip

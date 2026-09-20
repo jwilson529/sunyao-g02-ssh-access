@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+<title id="title">Sunyao G02 SSH Access</title><desc id="desc">Your handheld. Your access. A friendly SD card setup for the restricted EmuELEC menu.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#102a43"/><stop offset="1" stop-color="#071522"/></linearGradient></defs>
+<rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+<circle cx="1080" cy="80" r="210" fill="#1ae5b2" opacity=".06"/>
+<text x="62" y="78" font-family="Arial,sans-serif" font-size="17" letter-spacing="4" fill="#62e9c2">THE PORTS METHOD</text>
+<text x="60" y="146" font-family="Arial,sans-serif" font-size="50" font-weight="700" fill="#f4f8fc">Sunyao G02 SSH Access</text>
+<text x="62" y="200" font-family="Arial,sans-serif" font-size="26" fill="#c0d1df">Your handheld. Your access.</text>
+<text x="62" y="252" font-family="Arial,sans-serif" font-size="18" fill="#94adbf">Prepare the card → Run from Ports → Connect over Wi-Fi</text>
+<rect x="62" y="283" width="202" height="32" rx="16" fill="#173f43"/><text x="82" y="305" font-family="Arial,sans-serif" font-size="14" fill="#83efd0">No firmware flashing</text>
+<g transform="translate(942 53)"><rect width="170" height="254" rx="28" fill="#244052" stroke="#6a889a" stroke-width="2"/><rect x="17" y="22" width="136" height="130" rx="10" fill="#071522"/><text x="30" y="65" font-family="monospace" font-size="18" fill="#63edc4">root@G02</text><text x="30" y="99" font-family="monospace" font-size="25" fill="#63edc4"># _</text><path d="M42 178h18v18h18v18H60v18H42v-18H24v-18h18z" fill="#93a9b9"/><circle cx="132" cy="191" r="10" fill="#63edc4"/><circle cx="111" cy="216" r="10" fill="#63edc4"/></g>
+</svg>

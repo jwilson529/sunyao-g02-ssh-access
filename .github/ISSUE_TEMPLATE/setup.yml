@@ -1,0 +1,40 @@
+name: Setup help or device report
+description: Tell us where setup stopped, or report a tested device.
+title: "[Device] Short description"
+body:
+  - type: markdown
+    attributes:
+      value: "Please read troubleshooting first. Never upload private keys, passwords, or device backups."
+  - type: input
+    id: device
+    attributes:
+      label: Exact handheld model
+      placeholder: Sunyao G02
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Firmware version
+      description: Copy VERSION from the diagnostic if available.
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Which step?
+      options:
+        - Windows setup
+        - Ports category missing
+        - Diagnostic
+        - Enable access
+        - SSH connection
+        - Remove access
+        - Successful device report
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What happened?
+      description: Include the result message and PC operating system. Remove private details first.
+    validations:
+      required: true
